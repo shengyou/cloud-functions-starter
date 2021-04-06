@@ -1,0 +1,2 @@
+# 測試 Hello World 字串
+GET http://0.0.0.0:8080
