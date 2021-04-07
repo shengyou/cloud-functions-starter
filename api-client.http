@@ -11,3 +11,16 @@ GET http://0.0.0.0:8080
         client.assert(type === "text/plain", "Expected 'text/plain' but received '" + type + "'");
     });
 %}
+
+###
+
+# 測試 HTTP Method
+POST http://0.0.0.0:8080/
+Accept: application/json
+Cache-Control: no-cache
+
+> {%
+    client.test("測試 Bad Method 回傳 405", function() {
+        client.assert(response.status === 405, "Response status is not 405");
+    });
+%}
