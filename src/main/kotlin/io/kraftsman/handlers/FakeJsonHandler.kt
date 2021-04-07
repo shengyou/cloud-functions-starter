@@ -38,7 +38,7 @@ class FakeJsonHandler : HttpFunction {
                 content = faker.lorem().paragraph(),
                 coverUrl = "https://${faker.internet().url()}",
                 permalink = "https://${faker.internet().url()}",
-                publishedAt = LocalDateTime.now().toString(),
+                publishedAt = LocalDateTime.now(),
             )
         }
 
