@@ -20,5 +20,12 @@ class SimpleJsonHandler: HttpFunction {
 
             return
         }
+
+        with(response) {
+            setStatusCode(HttpURLConnection.HTTP_OK)
+            setContentType("application/json")
+            //language=JSON
+            writer.write("{\n  \"code\": 200,\n  \"message\": \"Hello, Cloud Functions\"\n}")
+        }
     }
 }

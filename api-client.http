@@ -24,3 +24,21 @@ Cache-Control: no-cache
         client.assert(response.status === 405, "Response status is not 405");
     });
 %}
+
+###
+
+# 測試 Simple JSON 字串
+GET http://0.0.0.0:8080
+Accept: application/json
+Cache-Control: no-cache
+
+> {%
+    client.test("測試 SimpleJsonHandler 回傳 200", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+
+    client.test("測試 content-type 是 JSON", function() {
+        var type = response.contentType.mimeType;
+        client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+    });
+%}
