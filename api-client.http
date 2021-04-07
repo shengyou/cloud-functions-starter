@@ -46,6 +46,6 @@ Cache-Control: no-cache
 ###
 
 # 測試 Fake JSON
-GET http://0.0.0.0:8080
+GET http://0.0.0.0:8080/?limit=2
 Accept: application/json
 Cache-Control: no-cache

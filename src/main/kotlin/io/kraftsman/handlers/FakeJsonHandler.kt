@@ -25,7 +25,9 @@ class FakeJsonHandler : HttpFunction {
             return
         }
 
-        val news = (1..10).map { id ->
+        val limit = request.queryParameters["limit"]?.first()?.toIntOrNull() ?: 10
+
+        val news = (1..limit).map { id ->
             News(
                 id = id.toString(),
                 title = "News Title $id",
