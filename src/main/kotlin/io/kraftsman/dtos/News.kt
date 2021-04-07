@@ -1,5 +1,8 @@
 package io.kraftsman.dtos
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class News(
     val id: String,
     val title: String,
