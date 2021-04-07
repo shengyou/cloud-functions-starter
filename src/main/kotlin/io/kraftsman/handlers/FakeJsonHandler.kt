@@ -1,5 +1,6 @@
 package io.kraftsman.handlers
 
+import com.github.javafaker.Faker
 import com.google.cloud.functions.HttpFunction
 import com.google.cloud.functions.HttpRequest
 import com.google.cloud.functions.HttpResponse
@@ -9,6 +10,7 @@ import kotlinx.serialization.json.Json
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.time.LocalDateTime
+import java.util.*
 import kotlin.jvm.Throws
 
 class FakeJsonHandler : HttpFunction {
@@ -26,15 +28,16 @@ class FakeJsonHandler : HttpFunction {
         }
 
         val limit = request.queryParameters["limit"]?.first()?.toIntOrNull() ?: 10
+        val faker = Faker.instance(Locale.TRADITIONAL_CHINESE)
 
         val news = (1..limit).map { id ->
             News(
                 id = id.toString(),
-                title = "News Title $id",
-                author = "News Title $id",
-                content = "News Title $id",
-                coverUrl = "https://www.example.com",
-                permalink = "https://www.example.com",
+                title = faker.lorem().sentence(),
+                author = faker.name().fullName(),
+                content = faker.lorem().paragraph(),
+                coverUrl = "https://${faker.internet().url()}",
+                permalink = "https://${faker.internet().url()}",
                 publishedAt = LocalDateTime.now().toString(),
             )
         }
